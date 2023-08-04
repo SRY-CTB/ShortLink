@@ -27,6 +27,7 @@
 	    <meta name="keyword" content="短链接,ShortLink,Link,链接缩短,短网址">
 		<!--引入 CSS 文件-->
 	    <link type="text/css" rel="stylesheet" href="asset/css/main.css">
+	    <link rel="stylesheet" href="//assets.shanrenyi.top/css/sk-main/gg/vue.css">
 	        <style>
         .vue-footer {
             background-color: #f0f0f0;
@@ -81,29 +82,6 @@
           z-index: 0; 
         }
         
-            /* 第一个段落样式 */
-        .title-line {
-          font-size: 35px;
-          text-align: center;
-          letter-spacing: 10px;
-          background: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          font-weight: bold;
-        }
-    
-        /* 第二个段落样式 */
-            .sub-title-line {
-              font-size: 16px;
-              text-align: left; /* 左对齐 */
-              letter-spacing: 20px;
-              background: linear-gradient(to right top, #ac78e1, #9596f2, #89aff9, #8fc4f8, #a7d6f3);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-              display: inline; /* 将段落设置为行内元素 */
-              font-weight: bold;
-              
-        }
         
           .link-area {
             position: relative;
@@ -111,65 +89,167 @@
             /* 其他样式 */
           }
           
-            blockquote {
-                background-color: #ffffff40;
-                border-left: .4rem solid #9a9b9b;
-                margin: 1.5em .7rem;
-                padding: .5em .7rem;
-                position: relative;
-                width: 600px;
-                z-index: 3;
-            }
+              .aq span {
+        letter-spacing: 13px;
+        font-size: 45px;;
+        animation-delay: 0s;
+        color: #fff;
+        text-shadow: 0 0 0 #444;
+        animation: start 1s ease-in-out infinite alternate;
+        font-size: 38px;
+            position: sticky;
+            
+            z-index: 99;
+
+    }
+
+    @keyframes start {
+        to {
+            text-shadow: 0 0 5px #fff,
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 18px #126fcc,
+                0 0 20px #126fcc,
+                0 0 40px #126fcc;
+            color: #fff;
+        }
+    }
+
+    .aq span:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .aq span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .aq span:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    .aq span:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+
+    .aq span:nth-child(5) {
+        animation-delay: 0.5s;
+    }
+
+    .aq span:nth-child(6) {
+        animation-delay: 0.6s;
+    }
+
+    .aq span:nth-child(7) {
+        animation-delay: 0.7s;
+    }
+
+    .aq span:nth-child(8) {
+        animation-delay: 0.8s;
+    }
+
+    .aq span:nth-child(9) {
+        animation-delay: 0.9s;
+    }
+
+    .aq span:nth-child(10) {
+        animation-delay: 1s;
+    }
+    
+    .wrap {
+    padding-top: 200px;
+}
+
+   /* 提示窗口样式 */
+    .copy-notification {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      display: none;
+      z-index: 9999; /* 设置足够高的z-index值 */
+    }
+
+    /* 显示提示窗口 */
+    .show-notification {
+      display: block;
+    }
     </style>
 	</head>
 	<body>
 	    <div class="wrap">
-  			<!--网页显示标题-->
-			<div class="meta" >
-                <p class="title-line cn-font">· 短链生成 ·</p>
-                <p class="sub-title-line cn-font">缩短超长链接</p>
-			</div>
+  			<!--动态标题-->
+ <div class="aq">
+
+        <span>S</span>
+        <span>H</span>
+        <span>O</span>
+        <span>R</span>
+        <span>T</span>
+
+        <span>L</span>
+        <span>I</span>
+        <span>N</span>
+        <span>K</span>
+</div>
+
 			<br><br>
 
-  			<!--链接显示区-->
-			<div class="link-area">
-				<input id="url" type="text" placeholder="原网址" />
-				<input id="submit" type="button" value="生成" onclick="APP.fn.setUrl(this)" />
-				<br><br>
-				<input id="shorturl" type="text" placeholder="短网址" readonly/>
-				<input id="shorturlcopy" type="button" value="复制" onclick="copyText()" />
-			</div>
+  			<!--显示-->
+			<div class="link-area" id="app">
+     <input id="url" type="text" placeholder="原网址" />
+      <input id="submit" type="button" value="生成" onclick="APP.fn.setUrl(this)" />
+      <br><br>
+      <input id="shorturl" type="text" placeholder="短网址" readonly/>
+<input id="shorturlcopy" type="button" value="复制" @click="copyText" />
+    <div class="copy-notification" :class="{ 'show-notification': showNotification }">
+      已复制文本: {{ copiedText }}
+    </div>
+                </div>
 			
 			<br><br><br>
-			<center>
-			<blockquote>
-            <p>XXXXXX</a>
-                <br><br>
-                XXX
-                <br>
-                XXX
-                <br></p>
-            </blockquote>
+			
             </center>
 			<div class="vue-footer" style="position: fixed; bottom: 0; left: 0; right: 0;">
 				<span class="vue-footer-left">原项目&nbsp;&nbsp;From <a href="https://github.com/renbaoshuo/Shortlink">&nbsp;&nbsp;renbaoshuo/Shortlink</a></span><span class="vue-footer-right">UI&nbsp;&nbsp;By&nbsp;&nbsp;<a href="https://star-skin.cn/">SRY_CTB</a></span>
 			</div>
 	    </div>
-		<!--嵌入 JS 代码-->
-		<script>
-			shorturl.oncopy = function() {
-				Swal.fire({
-					allowOutsideClick:false,
-					type:'success',
-					title: '复制成功！',
-					showConfirmButton: false,
-					timer: 3000
-				});
-			};
-		</script>
-		<!--引入 JS 文件-->
+		
+
+
 		<script type="text/javascript" src="asset/js/app.js"></script>
-		<script src="https://jsd.onmicrosoft.cn/npm/sweetalert2@8"></script>
+        <script src="https://jsd.onmicrosoft.cn/npm/vue@2.6.14/dist/vue.js"></script>
+
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        copiedText: "",
+        showNotification: false,
+      },
+      methods: {
+        copyText() {
+          const textToCopy = "要复制的文本内容"; // 将要复制的文本内容替换在这里
+          const tempInput = document.createElement("textarea");
+          tempInput.value = textToCopy;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          document.execCommand("copy");
+          document.body.removeChild(tempInput);
+
+          this.copiedText = textToCopy;
+          this.showNotification = true;
+
+          // 2秒后隐藏提示窗口
+          setTimeout(() => {
+            this.showNotification = false;
+          }, 2000);
+        },
+      },
+    });
+  </script>
 	</body>
 	
 </html>

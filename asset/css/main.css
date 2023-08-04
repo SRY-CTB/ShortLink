@@ -54,50 +54,64 @@ a:hover {
 .on .wrap .link-area {
     opacity: 1;
 }
-.wrap .link-area input {
-    display: inline-block;
-    vertical-align: middle;
+/* Styles for the input box */
+.link-area input[type="text"] {
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+  width: 400px;
+  margin: 5px;
+  color: black;
 }
-.wrap .link-area #url,
-.wrap .link-area #shorturl {
-    width: 320px;
-    height: 32px;
-    line-height: 32px;
-    padding: 0 10px;
-    border: 3px solid #bdc3c7;
-    border-radius: 5px;
-    color: #333;
+
+.link-area input[type="text"]:focus {
+  border-color: #42b983;
+  outline: none;
 }
-.wrap .link-area #url.focus,
-.wrap .link-area #url:focus {
-    border-color: #ff4665;
-    transition: .2s border ease;
+
+
+.link-area input[type="text"] {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-.wrap .link-area #shorturlcopy,
-.wrap .link-area #submit {
-    width: 90px;
-    height: 38px;
-    margin: 0 0 0 5px;
-    background: #ff4665;
-    border-radius: 5px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: .2s opacity ease;
+ 
+.link-area input[type="button"] {
+  background-color: #42b983;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-.wrap .link-area #submit:hover {
-    opacity: .75;
+
+.link-area input[type="button"]:hover {
+  background-color: #3b8d73;
 }
-.wrap .link-area #submit:active {
-    opacity: .9;
+
+#shorturlcopy {
+  margin-left: 2px;
 }
-.wrap .footer {
-    width: 100%;
-    bottom: 80px;
-    left: 0;
-    position: absolute;
-    color: #7e7e7e;
+
+
+#shorturlcopy:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
+
+
+.link-area input[type="button"],
+#shorturlcopy {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+.link-area input[type="button"],
+#shorturlcopy {
+  border-radius: 4px;
+}
+
 .wrap .footer a {
     color:#ff4665;
 }

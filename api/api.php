@@ -18,9 +18,9 @@
                 $opt['success'] = 'true';
                 $opt['content']['url'] = $url_c->set_url($_GET['url'], $config['length']);
             } else if(strstr($_GET['url'], $_SERVER['HTTP_HOST'])) {
-                $opt['content'] = '链接已经是短地址了。';
+                $opt['content'] = '您的链接已经不需要更加剪短了！';
             } else if(!$is_link) {
-                $opt['content'] = '请输入正确格式的网址。';
+                $opt['content'] = '请输入正确格式的网址！！！';
             }
         } else {
             $opt['content'] = '调用参数不能为空。';
