@@ -25,7 +25,7 @@
 		<!--介绍、关键词的放置处（SEO优化）-->
 	    <meta name="description" content="ShortLink 短链接服务">
 	    <meta name="keyword" content="短链接,ShortLink,Link,链接缩短,短网址">
-		<!--引入 CSS 文件-->
+
 	    <link type="text/css" rel="stylesheet" href="asset/css/main.css">
 	    <link rel="stylesheet" href="//assets.shanrenyi.top/css/sk-main/gg/vue.css">
 	        <style>
@@ -85,8 +85,8 @@
         
           .link-area {
             position: relative;
-            z-index: 1; /* 设置较高的z-index值 */
-            /* 其他样式 */
+            z-index: 1;
+
           }
           
               .aq span {
@@ -159,22 +159,24 @@
     padding-top: 200px;
 }
 
-   /* 提示窗口样式 */
-    .copy-notification {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background-color: #4CAF50;
-      color: #fff;
-      padding: 10px;
-      border-radius: 5px;
-      display: none;
-      z-index: 9999; /* 设置足够高的z-index值 */
-    }
+.copy-notification {
+  background-color: #42b983;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
 
-    /* 显示提示窗口 */
-    .show-notification {
-      display: block;
+.show-notification {
+  opacity: 1;
+  pointer-events: auto;
     }
     </style>
 	</head>
@@ -203,15 +205,14 @@
       <input id="submit" type="button" value="生成" onclick="APP.fn.setUrl(this)" />
       <br><br>
       <input id="shorturl" type="text" placeholder="短网址" readonly/>
-<input id="shorturlcopy" type="button" value="复制" @click="copyText" />
+      <input id="shorturlcopy" type="button" value="复制" @click="copyText" />
     <div class="copy-notification" :class="{ 'show-notification': showNotification }">
       已复制文本: {{ copiedText }}
     </div>
-                </div>
+    </div>
 			
 			<br><br><br>
 			
-            </center>
 			<div class="vue-footer" style="position: fixed; bottom: 0; left: 0; right: 0;">
 				<span class="vue-footer-left">原项目&nbsp;&nbsp;From <a href="https://github.com/renbaoshuo/Shortlink">&nbsp;&nbsp;renbaoshuo/Shortlink</a></span><span class="vue-footer-right">UI&nbsp;&nbsp;By&nbsp;&nbsp;<a href="https://star-skin.cn/">SRY_CTB</a></span>
 			</div>
@@ -222,34 +223,34 @@
 		<script type="text/javascript" src="asset/js/app.js"></script>
         <script src="https://jsd.onmicrosoft.cn/npm/vue@2.6.14/dist/vue.js"></script>
 
-  <script>
-    var app = new Vue({
-      el: "#app",
-      data: {
-        copiedText: "",
-        showNotification: false,
-      },
-      methods: {
-        copyText() {
-          const textToCopy = "要复制的文本内容"; // 将要复制的文本内容替换在这里
-          const tempInput = document.createElement("textarea");
-          tempInput.value = textToCopy;
-          document.body.appendChild(tempInput);
-          tempInput.select();
-          document.execCommand("copy");
-          document.body.removeChild(tempInput);
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      copiedText: "",
+      showNotification: false,
+    },
+    methods: {
+      copyText() {
+        const textToCopy = document.getElementById("shorturl").value;
 
-          this.copiedText = textToCopy;
-          this.showNotification = true;
+        const tempInput = document.createElement("textarea");
+        tempInput.value = textToCopy;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
 
-          // 2秒后隐藏提示窗口
-          setTimeout(() => {
-            this.showNotification = false;
-          }, 2000);
-        },
+        this.copiedText = textToCopy;
+        this.showNotification = true;
+
+        setTimeout(() => {
+          this.showNotification = false;
+        }, 2000);
       },
-    });
-  </script>
+    },
+  });
+</script>
 	</body>
 	
 </html>

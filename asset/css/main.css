@@ -54,7 +54,7 @@ a:hover {
 .on .wrap .link-area {
     opacity: 1;
 }
-/* Styles for the input box */
+
 .link-area input[type="text"] {
   border: 1px solid #ccc;
   padding: 10px;
